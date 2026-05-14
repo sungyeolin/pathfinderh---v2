@@ -132,15 +132,55 @@
     observer.observe(row);
   })();
 
-  /* ── Nav smooth scroll ── */
+  /* ── Nav smooth scroll (+ 모바일 드로어 닫기) ── */
   document.querySelectorAll('#nav a[href^="#"]').forEach(function(a) {
     a.addEventListener('click', function(e) {
       e.preventDefault();
       var target = document.querySelector(a.getAttribute('href'));
       if (!target) return;
+      // 모바일 드로어가 열려 있으면 닫기 (스크롤 잠금 해제 포함)
+      if (document.body.classList.contains('nav-open')) {
+        closeDrawer();
+      }
       var top = target.getBoundingClientRect().top + window.pageYOffset - 72;
       window.scrollTo({ top: top, behavior: 'smooth' });
     });
+  });
+
+  /* ── MOBILE DRAWER (햄버거 메뉴) ── */
+  var navToggle = document.getElementById('nav-toggle');
+  var navOverlay = document.getElementById('nav-overlay');
+
+  function openDrawer() {
+    document.body.classList.add('nav-open');
+    if (navToggle) navToggle.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeDrawer() {
+    document.body.classList.remove('nav-open');
+    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  if (navToggle) {
+    navToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (document.body.classList.contains('nav-open')) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
+    });
+  }
+
+  if (navOverlay) {
+    navOverlay.addEventListener('click', closeDrawer);
+  }
+
+  /* ESC 키로 드로어 닫기 (기존 keydown 리스너가 stewardship 모달도 처리하지만, 이건 독립적으로 추가) */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
+      closeDrawer();
+    }
   });
 
   /* ── Hero scroll arrow ── */
