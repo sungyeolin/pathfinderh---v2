@@ -138,12 +138,20 @@
       e.preventDefault();
       var target = document.querySelector(a.getAttribute('href'));
       if (!target) return;
-      // 모바일 드로어가 열려 있으면 닫기 (스크롤 잠금 해제 포함)
+
+      var doScroll = function() {
+        var top = target.getBoundingClientRect().top + window.pageYOffset - 72;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      };
+
       if (document.body.classList.contains('nav-open')) {
+        // 드로어가 열린 상태: 닫는 트랜지션(0.32s) 후 스크롤
+        // (body의 overflow:hidden 잠금이 해제된 뒤 스크롤이 정상 동작)
         closeDrawer();
+        setTimeout(doScroll, 320);
+      } else {
+        doScroll();
       }
-      var top = target.getBoundingClientRect().top + window.pageYOffset - 72;
-      window.scrollTo({ top: top, behavior: 'smooth' });
     });
   });
 
