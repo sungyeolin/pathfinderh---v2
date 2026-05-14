@@ -695,7 +695,25 @@
   <div class="section-label" data-ko="contact" data-en="contact">contact</div>
   <div class="contact-grid">
 
-    <!-- 왼쪽: 카카오맵 (JavaScript SDK + 마커) -->
+    <!-- 왼쪽: 지도 (임시 이미지) -->
+    <!-- ════════════════════════════════════════════════════════════════
+         📍 지도 활성화 방법 (카카오 API 도메인 등록 후)
+         ─────────────────────────────────────────────────────────────────
+         1. 아래 <a class="contact-map-link"> 블록 전체를 삭제
+         2. 그 아래 주석 처리된 <!-- KAKAO MAP SDK ... --> 블록의
+            주석 기호(<!-- 와 -->)만 제거하여 활성화
+         3. 카카오 개발자 콘솔(https://developers.kakao.com/)에서
+            현재 도메인을 '사이트 도메인'에 등록되어 있는지 확인
+         ════════════════════════════════════════════════════════════════ -->
+    <a class="contact-map-link"
+       href="https://map.kakao.com/link/map/백암아트홀별관,37.51066867784542,127.06590386900437"
+       target="_blank"
+       rel="noopener noreferrer"
+       title="카카오맵에서 보기">
+      <img src="assets/images/map_01.png" alt="패스파인더 H 위치 — 백암아트홀 별관" class="contact-map-img">
+    </a>
+
+    <!-- ⛔ KAKAO MAP SDK — 도메인 등록 후 아래 주석을 풀어 활성화
     <div class="contact-map-wrap">
       <div id="kakao-map"></div>
       <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5c9c20f9d0e6c617906b35b3ad92f048"></script>
@@ -708,6 +726,7 @@
         })();
       </script>
     </div>
+    -->
 
     <!-- 오른쪽: 주소/연락처 + 찾아오시는 길 -->
     <div class="contact-info-wrap">
