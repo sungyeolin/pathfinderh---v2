@@ -133,6 +133,9 @@
   })();
 
   /* ── Nav smooth scroll (+ 모바일 드로어 닫기) ── */
+  // smooth scroll 지원 여부 미리 검사 (일부 구형 모바일 브라우저는 객체 인자 자체를 잘못 해석)
+  var supportsSmoothScroll = 'scrollBehavior' in document.documentElement.style;
+
   document.querySelectorAll('#nav a[href^="#"]').forEach(function(a) {
     a.addEventListener('click', function(e) {
       e.preventDefault();
@@ -141,14 +144,18 @@
 
       var doScroll = function() {
         var top = target.getBoundingClientRect().top + window.pageYOffset - 72;
-        window.scrollTo({ top: top, behavior: 'smooth' });
+        if (supportsSmoothScroll) {
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        } else {
+          // 폴백: 객체 인자 미지원 환경 (즉시 스크롤)
+          window.scrollTo(0, top);
+        }
       };
 
       if (document.body.classList.contains('nav-open')) {
-        // 드로어가 열린 상태: 닫는 트랜지션(0.32s) 후 스크롤
-        // (body의 overflow:hidden 잠금이 해제된 뒤 스크롤이 정상 동작)
+        // 드로어가 열린 상태: 닫는 트랜지션(0.32s) + 안전 마진 후 스크롤
         closeDrawer();
-        setTimeout(doScroll, 320);
+        setTimeout(doScroll, 380);
       } else {
         doScroll();
       }

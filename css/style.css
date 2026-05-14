@@ -127,7 +127,7 @@
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(20, 18, 14, 0.45);
-    z-index: 1050;
+    z-index: 999;   /* #nav(1000)보다 낮게 — nav 안의 드로어/햄버거 클릭이 가로채지지 않도록 */
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
@@ -1260,8 +1260,6 @@
       padding-left: 40px;
     }
 
-    /* 드로어 열림 시 본문 스크롤 잠금 */
-    body.nav-open {
-      overflow: hidden;
-    }
+    /* (스크롤 잠금은 일부 모바일 브라우저에서 부작용이 있어 제거.
+       드로어가 화면의 75%를 덮고 있어 실제 사용에 큰 문제 없음) */
   }
