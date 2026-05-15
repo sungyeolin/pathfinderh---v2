@@ -1097,6 +1097,50 @@
     color: #aaa;
   }
 
+  /* 담당자 안내 — 모달 최하단 */
+  .sc-contact {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid #eeece9;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: #666;
+    line-height: 1.9;
+  }
+
+  .sc-contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 8px;
+  }
+
+  .sc-contact-role {
+    color: #999;
+    min-width: 42px;
+  }
+
+  .sc-contact-name {
+    color: #333;
+    font-weight: 500;
+    margin-right: 4px;
+  }
+
+  .sc-contact a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .sc-contact a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .sc-contact-sep {
+    color: #ccc;
+  }
+
   @media (max-width: 768px) {
     .stewardship-modal-header { padding: 20px 24px; }
     .stewardship-modal-body { padding: 24px 24px 36px; }
