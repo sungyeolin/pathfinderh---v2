@@ -351,7 +351,7 @@
   /* ── 핵심 지표 4열 ── */
   .metrics-row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     margin-top: 72px;
     padding-top: 48px;
     border-top: 1px solid #d8d5d0;
@@ -414,9 +414,19 @@
   .metrics-row.counted .metric-number     { opacity: 1; transition: opacity 0.4s; }
 
   @media (max-width: 768px) {
-    .metrics-row { grid-template-columns: repeat(2, 1fr); gap: 40px 0; }
-    .metric-item:nth-child(2) { border-right: none; }
-    .metric-item:nth-child(3) { border-right: 1px solid #d8d5d0; padding-left: 0; }
+    /* 1열 세로 스택 (AUM → 투자기업 → Track Record) */
+    .metrics-row { grid-template-columns: 1fr; gap: 32px 0; }
+    /* 세로 그리드에선 세로 구분선 불필요, 가로 구분선으로 전환 */
+    .metric-item {
+      border-right: none;
+      padding: 0 0 32px 0;
+      border-bottom: 1px solid #d8d5d0;
+    }
+    .metric-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .metric-item:not(:first-child) { padding-left: 0; }
   }
 
   /* ─── S3 FUND — paginated ─── */
